@@ -1,0 +1,777 @@
+/* START TYPOGRAPHY */
+:root {
+    --height-top: 100vh;
+    /* Fonts */
+    --font-family: 'Public Sans', 'sans-serif';
+
+    /* Typography */
+    --typo-menu: 300 14px/18.2px var(--font-family);
+    --typo-invite-btn: 400 14px/18.2px var(--font-family);
+
+    --typo-sect-h: 300 36px/41.4px var(--font-family);
+    --typo-sect-top-h: 300 52px/59.8px var(--font-family);
+    --typo-sect-p: 300 18px/27px var(--font-family);
+
+    --typo-s2-card-h: 300 24px/27.6px var(--font-family);
+    --typo-s2-card-p: 300 14px/21px var(--font-family);
+
+    --typo-s3-card-h: 300 17px/20px var(--font-family);
+    --typo-s3-card-p: 300 13px/17px var(--font-family);
+    --typo-s3-card-p2: 300 10px/13px var(--font-family);
+
+    --typo-foot: 300 15px/33.8px var(--font-family);
+    --typo-s3-card-p: 300 13px/16.9px var(--font-family);
+
+    --typo-foot2: 300 13px/15.9px var(--font-family);
+
+}
+
+@media(max-width: 720px) {
+
+    :root {
+        --typo-menu: 500 24px/18.2px var(--font-family);
+        --typo-invite-btn: 400 14px/18.2px var(--font-family);
+
+        --typo-sect-h: 300 30px/34.5px var(--font-family);
+        --typo-sect-top-h: 300 36.96px/42.5px var(--font-family);
+        --typo-sect-p: 300 14px/21px var(--font-family);
+
+        --typo-s2-card-h: 300 20px/23px var(--font-family);
+        --typo-s2-card-p: 300 14px/21px var(--font-family);
+
+        --typo-s3-card-h: 300 17px/20px var(--font-family);
+        --typo-s3-card-p: 300 13px/17px var(--font-family);
+        --typo-s3-card-p2: 300 10px/13px var(--font-family);
+
+        --typo-foot: 300 15px/33.8px var(--font-family);
+        --typo-s3-card-p: 300 13px/16.9px var(--font-family);
+    }
+}
+
+/* END TYPOGRAPHY */
+
+
+/* START RESET BLOCK */
+
+/* reset body */
+body {
+    margin: 0;
+
+}
+
+*,
+::before,
+::after {
+    box-sizing: border-box;
+}
+
+/* reset ul */
+
+ul {
+    list-style: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+
+/* reset a */
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+h3,
+p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+/* END RESET BLOCK */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+    font-family: var(--font-family);
+}
+
+.main {
+    background: #FAFAFA;
+}
+
+/* для объедениея шапки и первого блока в один экран прокрутки  */
+.hero-header-wrapper {
+    display: flex;
+    flex-direction: column;
+    /*размещаем наши блоки по вертикали Шапку и первую секцию*/
+    height: 100vh;
+    /*задаем контейнеру высоту экрана прокрутки*/
+    /*кроме этого именно в данном случае нужно растянуть нижний контейнер(котрый не шапка) до самого низа этого конейнера
+    это делаеться уже в правилах самого конейнера (котрый являеться flex элементом этого контейнера)*/
+}
+
+.header {
+    position: relative;
+    /*для позиционирования мобильной версии меню по центру относительно хедера , ... инересно может лучше сделать это правило relative только в media запросе ведь в десктопном режиме мы не задаем position absolute нигде и получаеться это правило простаивает*/
+    background: #fff;
+    padding-top: 18px;
+    /*вся область heder должна иметь отступы но сохраняя цвет поэтому используем padding*/
+    padding-bottom: 18px;
+}
+
+
+.container {
+    /* ОБЩиЙ КЛАСС для выравнивания контента по центру странички */
+    margin-left: auto;
+    margin-right: auto;
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    max-width: 1100px;
+}
+
+.header__inner {
+    /*специфичные свойства обертки именно хедер элементов, именно тут нам нужно разместить их с промежутками между но не с краев , в других секциях мы можем даже не захотеть использовать flex но котент будет выровнен по тому общему контейнеру*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo__img {
+    /*Если вложить элемент c display inline в элемент с внутренним display flow то появиться нежелательная в данном случае линия текста которая выше основания блока в которм текст находиться, эта линия для нижних крючков текста но картинке она точно не нужна. У картинки всегда будет отступ снизу. А если сделать её блоком то отступа не будет*/
+    display: block;
+}
+
+.menu__list {
+    color: #9698A6;
+    font: var(--typo-menu);
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    /*задает отсуп между flex элементами без необходимости устанавливать отступ кажому а потом черз ntc убирать один отступ у последнего или первого элемента*/
+}
+
+/*ОБЩИЙ ЭЛЕМЕНТ*/
+.invite {
+    font: var(--typo-invite-btn);
+    color: #fff;
+    padding: 13px 35px;
+    /*создадим кнопку из ссылки с помощью падингов*/
+    border-radius: 50px;
+    background: linear-gradient(90deg, #31D35C 0%, #2BB7DB 100%);
+}
+
+
+.hero {
+    position: relative;
+    flex-grow: 1;/**заставляем вырасти его до конца родительского блока который 100vh*/
+    background: #FAFAFA;
+    overflow: hidden; /*скрываем все что вылезет за границу блока переполнения*/
+
+
+}
+
+.hero__bg {/*просто использовал картинку нужного размера с прозрачным фоном по левой стороне но это вроде костыль и нужно как то по другому добавлять фоновые штуки. Хотя если бы для них была только картинка это вполне себе выход*/
+    position: absolute;
+    block-size: auto;
+    background-position: center;
+    background-image: url("/hero.png");
+    background-repeat: no-repeat;
+    height: 100%;
+    width: 100%;
+    
+}
+
+/*что бы выровнять текст этой секции я не использовал padding и margin я сделал flex контейнер 
+который центрирует внутри себя блок с текстом по вертикали таким бразом блок с текстом будет 
+на всех экранах по центру этого родителя. А внутри этого элемента разместил текст 
+с помощью отступов. Я решил что внутренний блок текста не нужно делать гибким так как гибкость и
+уеличение пространства между абзацами не будет красиво смотреться на более широком экране
+поэтому оставил все жестким в этом блоке*/
+
+.hero__inner { /*мог ли я обойтись секцией hero без иннера наверно нет ведь тогда я бы задал ему padding и  сдвинулся бы бекграунд*/
+    display: flex;
+    align-items: center; /*выравниваем по вертикали блок со всеми надписями так как он приклеен к левому краю по горизантали нам его выравнивать не нужно*/
+    height: 100%;
+}
+
+.hero__inner__wrap {
+    z-index: 1;
+    width: 390px; /*задаем ширину что бы переносы текста выглядели органично*/
+}
+
+
+.hero__title {
+    font: var(--typo-sect-top-h);
+    color: #2D314D;
+    margin-bottom: 24px;/*используем негласное правило только с одной стороны а именно margin-bottom*/
+
+}
+
+.hero__text {
+    font: var(--typo-sect-p);
+    color: #9698A6;
+    margin-bottom: 36px;
+}
+
+.invite-wrapper {
+}
+
+.hero__invite{
+    display: inline-block;
+    
+}
+
+
+.features{
+    height: 100vh;
+    background: #F3F4F6;
+}
+
+.features__inner{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.features__inner__wrapper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.features__title{
+    font: var(--typo-sect-h);
+    color:#2D314D;
+    margin-bottom: 36px;
+}
+
+.features__text-wrapper{
+    max-width: 634px;
+    display: flex;
+
+}
+.features__text{
+    font: var(--typo-sect-p);
+    color:#9698A6;
+    margin-bottom: 63px;
+}
+
+
+.card-set-4{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-set-4__card-wrapper{
+    flex-basis: 25%;
+    display: flex;
+    justify-content: center;
+}
+.card{
+    display: flex;
+    flex-direction: column;
+}
+.features__card{
+    padding: 15px;
+    /* background: #cccccc; */
+    max-width: 265px;
+}
+
+.features__card__img{
+    margin-bottom: 48px;
+}
+.features__card__title{
+    margin-bottom: 36px;
+    font: var(--typo-s2-card-h);
+    color: #2D314D;
+}
+
+.features__card__text{
+    font:var(--typo-s2-card-p);
+    color: #9698A6;
+}
+
+
+.articles{
+    height: 100vh;
+}
+
+.articles__inner{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+.articles__wrapper{
+    width: 100%;
+}
+
+.articles__title{
+    font: var(--typo-sect-h);
+    margin-bottom: 36px;
+    color: #2D314D;
+}
+.articles__card{
+    width: 243px;
+    border-radius: 5px;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.10);
+}
+.articles__card__img{
+    background-image: url(/div.article__image.png);
+    background-size: cover;
+    height: 200px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.articles__card__text-wrapper{
+    padding-top: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 48px;   
+}
+
+
+.articles__card__author{
+    font: var(--typo-s3-card-p2);
+    color: #9698A6;
+}
+
+.articles__card__title{
+    font: var(--typo-s3-card-h);
+    color: #2D314D;
+
+}
+
+.articles__card__text{
+    font: var(--typo-s3-card-p);
+    color: #9698A6;
+}
+
+
+.footer
+{
+    height: 265px;
+    padding-top: 82px;
+    background: #2D314D;
+}
+.footer__content
+{
+    display: flex;
+    justify-content: space-between;
+}
+.footer__left-part{
+    height: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.imgs{
+    display: flex;
+    flex-direction: column;
+    
+}
+.logo__img-dark{
+    margin-bottom: 61px;
+    display: block;
+}
+
+.social{
+    display: flex;
+    gap: 20px;
+}
+
+.footer__social-img{
+    display: block;
+    justify-content: space-between;
+}
+.footer__links-set{
+    margin-left: 130px;
+    display: flex;
+    gap: 103px;
+
+}
+.footer__links-list{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+}
+.footer__text-link{
+    font: var(--typo-foot);
+    color: #FFFFFF;
+}
+
+
+.footer__right-part{
+    padding-top: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.footer__c{
+    font: var(--typo-foot2);
+    color: #9698A6;
+}
+
+.footer__invite
+{
+    display: inline-block;
+    margin-bottom: 23px;
+}
+
+/*MEDIA BLOCK START*/
+
+/*просто отключаем не нужные для отображания стили кнопки которая доступна только из мобильной версии*/
+/*и не загружаем лишние стили загузим их именно в медиазапросе для мобилки*/
+.menu__btn {
+    display: none;
+}
+
+.menu__btn span {
+    display: none;
+}
+
+.hero-text-mobile
+{
+    display: none;
+}
+
+
+/*START ANIMATION MENU SECTION данный блок тноситься к медиазапросу ниже поэтому он 
+установлен прямо перед этим медиазапросом*/
+
+
+/*что происходит в этой анимации, при навешивании класса который принимает анимацию 
+slideDown. Объекту назначаеться displey flex  и непрозрачность 0 и положение 20% которые 
+постепенно меняються на непрозрачность 100 а так же положение меняеться в нужное место
+100% от высоты relative элемента в данном случае header + 15px вниз
+
+затем когда срабатывает анимация slide up 
+снимаеться класс menu--open и display flex убираеться оставляя display none который
+установлен по умолчанию
+При назначении класса menu--close который использует данную анимацию снова назначаеться
+display flex и срабатывает анимация добавленных стилей от текущего положения и непрозрачности
+до конечных значений а затем включаеться visability hidden и класс menu--close остаеться висеть
+пока снова не кликнут на элемент и не заменят класс на menu--open который снимет visability hidden
+и снова установит display flex и opasity и проанимирует их до нужных значений.
+Таким образом изначально у нас display none 
+а потом при закрытом меню всегда display hidden
+*/
+@keyframes slideDown {
+    0% {
+        top: 20%;
+        opacity: 0;
+    }
+
+    100% {
+        top: calc(100% + 15px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        top: calc(100% + 15px);
+        opacity: 1;
+    }
+
+    100% {
+        top: 20%;
+        opacity: 0;
+        visibility: hidden;
+        /*скроет именно на последнем кадре так как это просто флаг*/
+    }
+}
+
+/*END ANIMATION MENU SECTION*/
+@media(max-width: 1100px)
+{
+    .card-set-4__card-wrapper{
+        flex-basis:50%;
+    }
+
+    .features{
+        height: fit-content;
+        padding-bottom: 70px;
+        padding-top: 90px;
+    }
+
+    .features__inner__wrapper{
+        align-items: center;
+    }
+
+    .features__title{
+        text-align: center;
+    }
+
+    .features__text{
+        text-align: center;
+    }
+
+    .features__text-wrapper{
+        justify-content: center;
+    }
+
+    .features__card{
+        align-items: center;
+    }
+
+    .features__card__title
+    {
+        margin-bottom: 16px;
+
+        text-align: center;
+    }
+    .features__card__text
+    {
+        text-align: center;
+
+    }
+    .features__card__img{
+        margin-bottom: 33px;
+    }
+
+    .articles{
+        height: fit-content;
+        padding-bottom: 70px;
+        padding-top: 69px;
+    }
+
+    .articles__card{
+        margin-bottom: 30px;
+    }
+
+    .articles__wrapper{
+        display: flex;
+        flex-direction: column;
+    }
+    .articles__title{
+        text-align: center;
+    }
+  
+
+
+
+}
+/*для футера*/
+@media(max-width: 900px){
+    .footer__links-set{
+        margin-left: 50px;
+        gap:50px
+    }
+
+    
+}
+
+@media(max-width: 720px) {
+    .hero__bg {
+        background-position: -300px;
+        
+    }
+    
+    /*Мобильный хедер*/
+
+    /* Переопределяем внешний вид меню и прячем его, что бы показать в нужны момент */
+    .menu__list {
+        z-index: 2;
+        flex-direction: column;
+        display: none;
+        background: #FAFAFA;
+
+        /* background: #5e4363; */
+        border-radius: 10px;
+        align-items: center;
+        gap: 36px 0;
+        padding-top: 24px;
+        padding-bottom: 24px;
+
+        min-width: 360px;
+
+
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+
+
+    /*Загружаем стили кнопки именно сейчас потому что здесь они нужны
+ Меню кнопка с полосочками, стили для придания размеров контейнеру 
+ кнопки для дальнейшего размещения в нем полосок  */
+    .menu__btn {
+        display: flex;
+        /*врубаем отображение тут */
+        width: 24px;
+        height: 11px;
+        border: none;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /*полосочки меню*/
+    .menu__btn span {
+        display: inline;
+        height: 1px;
+        background: #2D314D;
+        width: 100%;
+
+    }
+
+    .header_invite {
+        display: none;
+    }
+
+    .hero__invite
+    {
+        display: inline-block;
+    }
+
+
+/*просто псевдоклассы для анимации 
+в момент навешивания которых мы можем запускать animation
+animation хранить их нужно в данном случае вмедиазапросе так как если вынести
+их в обычный файл то да класс навешиваеться но потом срабатывают правила медиазапроса
+и свойства перекрываються свойствамми из медиазапроса
+а вот когда эти классы внутри медиазапроса они будут перекрывать стандартные свойства 
+объявленные внутри медиазпроса
+*/
+    .menu--open {
+        animation: slideDown 0.5s ease forwards;
+        display: flex;
+        /*зачем? а затем что у нас изначально в праилах display none. И тут мы включаем отображение и так как в изначальных стилях задумывалось использовать flex мы включаем отображение именно flex если бы была возможность включить отображение а в изначальных стилях задать что это flex но он просто  выключен а тут мы бв его включили мы бы так и сделали*/
+    }
+    
+    .menu--close {
+        animation: slideUp 0.5s ease forwards;
+        display: flex;
+        /*тоже самое если не установить этот класс мы получим что класс menu--open снимаеться а значит и flex отображение которое он установил снимаеться и остаеться отображение по умолчанию none. И нам нужно его заменить на flex а в самой анимации мы прописываем куда скроеться меню оно больше не будет disply none оно будет получаеться все время display flex*/
+    }
+
+    .articles__card-set-4__card-wrapper{
+        flex-basis:100%;
+    }
+
+    .articles__card{
+        width: 342px;
+    }
+
+    .footer{
+        padding-top: 40px;
+        overflow: hidden;
+    height: fit-content;
+    }
+
+    .footer__content{
+        margin-bottom: 144px;
+        flex-direction: column;
+        height: 438px;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .footer__left-part{
+        flex-direction: column;
+        align-items: center;
+    }
+    .social{
+        margin-bottom: 38px;
+    }
+    .footer__links-set{
+        flex-direction: column;
+        justify-content: flex-start;   
+        gap: unset;     
+        margin-left: unset;
+        align-items: center;
+    }
+    .footer__links-list{
+        align-items: center;
+
+    }
+    .imgs{
+        align-items: center;
+    }
+    .logo__img-dark{
+        margin-bottom: 37px;
+    }
+
+    .footer__right-part{
+        align-items: center;
+    }
+}
+
+
+@media(max-width: 460px) {
+    .features__card-set-4__card-wrapper{
+        flex-basis:100%;
+    }
+}
+
+
+@media(max-width: 390px) {
+    .hero__bg {
+        block-size: auto;
+        background-position: center top;
+        background-image: url("/top-mobile.png");
+        background-repeat: no-repeat;
+        height: 100%;
+        width: 100%;
+    }
+
+    .hero-header-wrapper{
+        height: fit-content;
+    }
+    .hero{
+        flex-grow: initial
+    };
+
+
+    .hero__inner__wrap{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+   .hero__inner
+   {
+    padding-top:  352px;
+    padding-bottom: 0px;
+   }
+   
+
+    .hero__title, .hero__text,.hero__invite{
+        text-align: center;
+    }
+    .hero__invite
+    {
+        margin-bottom: 47px;
+    }
+
+}
+
+
+
+
+
+
